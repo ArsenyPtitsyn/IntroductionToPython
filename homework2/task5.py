@@ -2,19 +2,24 @@
 
 from random import randint
 
-# def create_list(n, min, max):
-#     result_list = [None] * n
-#     for i in range(n):
-#         result_list[i] = randint(min, max)
-#     return result_list
-#
-# def list_shufle(initial_list):
-#     length = initial_list.__len__()
-#     result_list = [None] * length
-#     for i in range(length):
-#         j = randint(0, length)
-#         if result_list[j] == None:
-l = list(range(1, 6))
+def create_list(size, min, max):
+    result_list = [None] * size
+    for i in range(size):
+        result_list[i] = randint(min, max)
+    return result_list
 
-for i in range(1, 6):
-    j = randint(1, 5)
+def list_shufle(initial_list):
+    length = len(initial_list)
+    result_list = initial_list[:]
+    for i in range(length):
+        random_index = randint(0, length - 1)
+        temp = result_list[i]
+        result_list[i] = result_list[random_index]
+        result_list[random_index] = temp
+    return result_list
+
+initial_list = create_list(10, -15, 20)
+print(initial_list)
+result_list = list_shufle(initial_list)
+print(result_list)
+print(initial_list)
