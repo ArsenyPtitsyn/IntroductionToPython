@@ -11,7 +11,7 @@ def create_list(n):
     return result_list
 
 def product_of_specified_numbers(result_list):
-    n = result_list.__len__()
+    n = len(result_list)
     with open("file1.txt", "r") as f:
         result = 1
         try:
