@@ -11,8 +11,8 @@ def sum_of_digits_of_number(number):
     return sum
 
 x = input("Введите вещественное число используя точку для разделения целой и дробной части: ")
-list = split_real_number(x)
+parts_of_number = split_real_number(x)
 sum = 0
 for i in range(2):
-    sum += sum_of_digits_of_number(list[i])
+    sum += sum_of_digits_of_number(parts_of_number[i])
 print(sum)
