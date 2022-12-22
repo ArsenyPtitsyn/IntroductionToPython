@@ -2,6 +2,7 @@
 # которая найдёт сумму элементов списка, стоящих на нечётной позиции.
 
 import random as r
+
 def create_list(n):
     initial_list = [None] * n
     for i in range(n):

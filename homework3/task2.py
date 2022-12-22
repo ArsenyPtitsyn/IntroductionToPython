@@ -3,6 +3,7 @@
 # элемент, второй и предпоследний и т.д.
 
 import random as r
+
 def create_list(n, min, max):
     new_list = [None] * n
     for i in range(n):
