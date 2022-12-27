@@ -2,7 +2,6 @@
 # составит список простых множителей числа N.
 
 import random as r
-import math as m
 
 def is_prime_number(number):
     if number == 1:
