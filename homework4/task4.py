@@ -16,11 +16,14 @@ def create_polynom(degree, min, max):
     for i in range(degree):
         if list_of_coefficients[i] == 0:
             continue
-        s += f'{list_of_coefficients[i]}*x^{degree - i} + '
-    if list_of_coefficients[degree] == 0:
-        s = s[:-2] + s[-1:]
-    else:
+        elif list_of_coefficients[i] == 1:
+            s += f'x^{degree - i} + '
+        else:
+            s += f'{list_of_coefficients[i]}*x^{degree - i} + '
+    if list_of_coefficients[degree] != 0:
         s += f"{list_of_coefficients[degree]}"
+    else:
+        s = s[:-2] + s[-1:]
     return s
 
 def write_polynom_to_file(file_name, polygon):
