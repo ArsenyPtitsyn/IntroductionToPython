@@ -18,7 +18,7 @@ def create_polynom(degree, min, max):
             continue
         s += f'{list_of_coefficients[i]}*x^{degree - i} + '
     if list_of_coefficients[degree] == 0:
-        s += ''
+        s = s[:-2] + s[-1:]
     else:
         s += f"{list_of_coefficients[degree]}"
     return s
