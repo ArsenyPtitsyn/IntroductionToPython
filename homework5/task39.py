@@ -18,6 +18,7 @@ def print_map():
             print(field[i][j] + '|', end='')
         print()
 
+
 def is_empty_cell(y, x):
     return field[y][x] == empty_dot
 
@@ -30,36 +31,58 @@ def turn(dot):
         y = int(input(f"Введите координату хода Y (от 1 до {vertical_field_size})")) - 1
         if is_valid_cell(y, x) and is_empty_cell(y, x):
             field[y][x] = dot
-            change_dot(dot)
             break
         print("Ячейки с такими индексами не существует или же она занята!")
-
-def change_dot(dot):
-    if dot == first_dot:
-        dot = second_dot
-    elif dot == second_dot:
-        dot = first_dot
-
 
 def check_line(dot, y, x, dy, dx, condition):
     if condition:
         for i in range(win_sequence):
-            if field[y + dy * i][x + dx * i] == c:
-                continue
-            else:
+            if field[y + dy * i][x + dx * i] != dot:
                 return False
+            else:
+                continue
         return True
 
 
 def check_lines(dot, y, x):
+    return check_line(dot, y, x, 0, 1, x <= horizontal_field_size - win_sequence) \
+        or check_line(dot, y, x, 1, 0, y <= vertical_field_size - win_sequence) \
+        or check_line(dot, y, x, 1, 1, x <= horizontal_field_size - win_sequence
+                      and y <= vertical_field_size - win_sequence) \
+        or check_line(dot, y, x, -1, 1, x <= horizontal_field_size - win_sequence
+                      and y >= win_sequence - 1)
 
 
 def check_win(dot):
-
+    for i in range(vertical_field_size):
+        for j in range(horizontal_field_size):
+            if check_lines(dot, i, j):
+                return True
+    return False
 
 def is_map_full():
-
+    for i in range(vertical_field_size):
+        for j in range(horizontal_field_size):
+            if is_empty_cell(i, j):
+                return False
+    return True
 
 def game_checks(dot, message):
+    if check_win(dot):
+        print(message)
+        return True
+    if is_map_full():
+        print('draw!')
+        return True
+    return False
 
-
+print_map()
+while True:
+    turn(first_dot)
+    print_map()
+    if game_checks(first_dot, "First player win!"):
+        break
+    turn(second_dot)
+    print_map()
+    if game_checks(second_dot, "Second player win!"):
+        break
