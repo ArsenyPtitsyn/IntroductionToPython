@@ -28,3 +28,9 @@ def delete_entry(id):
 
 def show_phonebook():
     v.show_phonebook(p.phonebook)
+
+def show_contact(id):
+    v.show_contact(str(p.phonebook[id]))
+
+def show_contact_briefly(id):
+    v.show_contact_briefly(f'{str(p.phonebook[id][0])}, {str(p.phonebook[id][1])}, {str(p.phonebook[id][2])}')

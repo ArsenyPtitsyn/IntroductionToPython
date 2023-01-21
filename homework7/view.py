@@ -12,3 +12,9 @@ def set_phonenumber():
 
 def set_comment():
     return input('Введите комментарий к номеру телефона контакта: ')
+
+def show_contact(contact):
+    print(contact)
+
+def show_contact_briefly(short_contact):
+    print(short_contact)
