@@ -1,6 +1,5 @@
 import controller as c
 
-c.show_phonebook()
 c.add_entry()
 c.add_entry()
 c.add_entry()
