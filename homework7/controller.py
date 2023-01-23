@@ -23,7 +23,10 @@ def add_entry():
     fg.write_to_file('phonebook.txt')
 
 def delete_entry(id):
-    del p.phonebook[id]
+    if id not in p.phonebook.keys():
+        print('Нет записи с таким айдишником!')
+    else:
+        del p.phonebook[id]
     fg.write_to_file('phonebook.txt')
 
 def show_phonebook():
