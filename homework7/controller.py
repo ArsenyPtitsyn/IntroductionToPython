@@ -34,3 +34,6 @@ def show_contact(id):
 
 def show_contact_briefly(id):
     v.show_contact_briefly(f'{str(p.phonebook[id][0])}, {str(p.phonebook[id][1])}, {str(p.phonebook[id][2])}')
+
+def print_phonebook_from_file(filename):
+    print(fg.read_phonebook_from_file(filename))

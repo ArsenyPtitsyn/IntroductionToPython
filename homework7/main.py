@@ -1,9 +1,9 @@
 import controller as c
 
+c.print_phonebook_from_file('phonebook.txt')
 c.add_entry()
 c.add_entry()
 c.add_entry()
-c.show_phonebook()
 c.show_phonebook()
 c.add_entry()
 c.show_phonebook()
