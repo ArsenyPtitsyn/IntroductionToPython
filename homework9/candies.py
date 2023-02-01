@@ -1,5 +1,5 @@
 from random import randint
-
+#5634428782:AAFbmMYfbXL8zqprhFql5VKzMbwKizJ2vNU
 candies = 221
 player1 = None
 player2 = None
@@ -8,33 +8,34 @@ game_mode = 1
 
 def choose_game_mode():
     global game_mode
-    game_mode = int(input('Если вы хотите играть с человеком, нажмите "1", если с компьютером - "2".'))
+    game_mode = int(input('If you want to play with human enter "1", with computer - "2".'))
     return game_mode
 
 
 def pvp_representation():
     global player1, player2
-    player1 = input('Первый игрок, введите своё имя: ')
-    player2 = input('Второй игрок, введите своё имя: ')
+    player1 = input('First player enter your name: ')
+    player2 = input('Second player enter your name: ')
 
 
 def pvm_representation():
     global player1, player2
-    player1 = input('Введите своё имя: ')
-    player2 = 'Компьютер'
+    player1 = input('Enter your name: ')
+    player2 = 'Computer'
+    print(f'Opponents: {player1} and {player2}')
 
 
 def human_turn(player):
     global candies
     while True:
-        print(f'Сейчас на столе {candies} конфет!')
-        n = int(input(f'{player}! Введите количество конфект, которое вы хотите взять (от 1 до 28): '))
+        print(f'Now on the table {candies} candies!')
+        n = int(input(f'{player}! Enter number of candies (from 1 to 28): '))
         if n > 28 or n < 1:
-            print('Неверный ввод!')
+            print('Impossible!')
         else:
             candies -= n
             if candies < 0:
-                print('Вы не можете взять конфет больше, чем лежит на столе!')
+                print(f"You can''t take more then {candies} candies!")
                 candies += n
                 continue
             break
@@ -43,8 +44,12 @@ def human_turn(player):
 def ai_turn():
     global candies
     taken_candies = candies % 29
-    candies -= taken_candies
-    print(f'Компьютер взял {taken_candies} конфет и теперь на столе {candies} конфет!')
+    if taken_candies != 0:
+        candies -= taken_candies
+    else:
+        taken_candies = randint(1, 28)
+        candies -= taken_candies
+    print(f'Computer takes {taken_candies} candies and now on the table {candies} candies!')
 
 
 def check_win(player):
@@ -63,8 +68,9 @@ def change_player(player):
     global player1, player2
     if player == player1:
         return player2
-    else:
+    if player == player2:
         return player1
+
 
 
 game_mode = choose_game_mode()
@@ -81,7 +87,7 @@ elif game_mode == 2:
     pvm_representation()
     player = toss()
     while True:
-        if player == 'AI':
+        if player == 'Computer':
             ai_turn()
             if check_win(player):
                 print(f'{player} win!')
@@ -93,4 +99,5 @@ elif game_mode == 2:
                 print(f'{player} win!')
                 break
             player = change_player(player)
-
+else:
+    print('Not described game mode!')
