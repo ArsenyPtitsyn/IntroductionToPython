@@ -2,7 +2,7 @@ from aiogram.utils import executor
 import handlers
 from bot import dp
 
-async def on_startup( ):
+async def on_startup(_):
     print('Бот запущен')
 
 handlers.registered_handlers(dp)
